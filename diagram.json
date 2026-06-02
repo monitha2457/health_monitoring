@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "author": "Monitha",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -28.8, "left": 312.04, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -89.6,
+      "left": -52,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 40.8,
+      "left": 49.8,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": 105.9, "left": 129, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "dht1:SDA", "esp:4", "green", [ "v-19.2", "h288.1", "v0" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h451.2", "v57.6" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-28.8", "v19.3", "h0", "v201.6", "h9.6" ] ],
+    [
+      "lcd1:SDA",
+      "esp:21",
+      "green",
+      [ "h-19.2", "v0.2", "h0", "v0", "h345.6", "v-9.6", "h144", "v67.2", "h0" ]
+    ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h-67.2", "v115.5", "h585.6", "v144" ] ],
+    [ "bz1:1", "esp:15", "green", [ "v105.6", "h355.2", "v0" ] ],
+    [ "bz1:2", "esp:GND.1", "green", [ "v0", "h220.4" ] ]
+  ],
+  "dependencies": {}
+}
